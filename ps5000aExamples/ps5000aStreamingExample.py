@@ -6,11 +6,13 @@
 # This data is then plotted as mV against time in ns.
 
 import ctypes
-import numpy as np
-from picosdk.ps5000a import ps5000a as ps
-import matplotlib.pyplot as plt
-from picosdk.functions import adc2mV, assert_pico_ok
 import time
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+from picosdk.functions import adc2mV, assert_pico_ok
+from picosdk.ps5000a import ps5000a as ps
 
 # Create chandle and status ready for use
 chandle = ctypes.c_int16()
@@ -18,13 +20,13 @@ status = {}
 
 # Open PicoScope 5000 Series device
 # Resolution set to 12 Bit
-resolution =ps.PS5000A_DEVICE_RESOLUTION["PS5000A_DR_12BIT"]
+resolution = ps.PS5000A_DEVICE_RESOLUTION["PS5000A_DR_12BIT"]
 # Returns handle to chandle for use in future API functions
 status["openunit"] = ps.ps5000aOpenUnit(ctypes.byref(chandle), None, resolution)
 
 try:
     assert_pico_ok(status["openunit"])
-except: # PicoNotOkError:
+except:  # PicoNotOkError:
 
     powerStatus = status["openunit"]
 
@@ -36,7 +38,6 @@ except: # PicoNotOkError:
         raise
 
     assert_pico_ok(status["changePowerSource"])
-
 
 enabled = 1
 disabled = 0

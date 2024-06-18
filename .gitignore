@@ -10,3 +10,12 @@
 # All platforms
 
 **/*.h
+.idea/
+
+*.pyc
+
+build/lib/picosdk/
+
+picosdk.egg-info/
+
+.sdkwarning
